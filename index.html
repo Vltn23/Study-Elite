@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon Espace de Cours</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#4f67e8">
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--ink:#1f2937;--muted:#718096;--line:#e6eaf0;--blue:#4f67e8;--blue2:#eef1ff;--green:#e4f7ee;--shadow:0 8px 24px rgba(27,39,80,.06)}
+body.dark{--bg:#111827;--panel:#1f2937;--ink:#edf2f7;--muted:#a0aec0;--line:#374151;--blue2:#303a62;--green:#164e3b;--shadow:0 8px 24px rgba(0,0,0,.18)}body.dark .sidebar,body.dark .subject,body.dark .resource,body.dark .note-card,body.dark .field input,body.dark .field select,body.dark .field textarea,body.dark .search,body.dark .modal{background:var(--panel);color:var(--ink)}body.dark .plain{background:#374151;color:#e5e7eb}body.dark .soft{background:var(--blue2);color:#cbd3ff}body.dark .welcome{box-shadow:none}body.dark .sidebar-note{background:#242c43;border-color:#394365;color:#b8c1df}body.dark .sidebar-note strong{color:#e1e6ff}body.dark .empty{border-color:#4b5563}body.dark .stat .symbol,body.dark .fileicon{background:#303a62}body.dark .pill{background:#374151;color:#d1d5db}body.dark .nav button{color:#b3bdcd}body.dark .nav button.active{background:var(--blue2);color:#dce2ff}body.dark .eyebrow{color:#aab5ff}body.dark .modal-backdrop{background:#0009}body.dark .field label{color:#d2d8e2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:10px 14px;font-weight:650}.primary{background:var(--blue);color:#fff}.soft{background:var(--blue2);color:var(--blue)}.plain{background:#f1f4f8;color:#394150}.danger{background:#fff0f0;color:#bd3333}
+.layout{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:25px 16px;display:flex;flex-direction:column;gap:24px}.brand{display:flex;align-items:center;gap:11px;padding:0 8px}.brand-icon{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#536df0,#8a7cf5);display:grid;place-items:center;color:white;font-size:22px}.brand h1{font-size:17px;margin:0}.brand small{color:var(--muted);display:block;margin-top:3px}.navlabel{font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:#9aa3b3;font-weight:800;padding:0 12px}.nav button{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:transparent;color:#697386;margin:3px 0;padding:12px}.nav button.active{background:var(--blue2);color:var(--blue)}.nav .ico{width:22px;text-align:center;font-size:17px}.sidebar-note{margin-top:auto;background:#f6f7ff;border:1px solid #e9ebff;padding:14px;border-radius:15px;font-size:12px;color:#67708b;line-height:1.5}.sidebar-note strong{display:block;color:#39436c;margin-bottom:5px}
+main{padding:28px clamp(18px,4vw,48px);min-width:0}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:30px}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.1px}.topbar h2{margin:5px 0 0;font-size:clamp(24px,3vw,32px);letter-spacing:-.7px}.avatar{height:42px;width:42px;border-radius:50%;background:#e9e7ff;color:#5b4ed0;display:grid;place-items:center;font-weight:800}.welcome{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(115deg,#4f67e8,#7869ed);color:#fff;padding:25px 28px;border-radius:22px;box-shadow:var(--shadow);margin-bottom:24px;overflow:hidden}.welcome h3{font-size:23px;margin:0 0 8px}.welcome p{margin:0;color:#e7eaff;max-width:560px;line-height:1.55}.welcome .bigicon{font-size:60px;opacity:.9;padding:0 18px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:30px}.stat,.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.stat{padding:18px}.stat .label{font-size:13px;color:var(--muted)}.stat .num{font-size:27px;font-weight:800;margin-top:8px}.stat .symbol{float:right;background:#f0f2ff;border-radius:11px;padding:8px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 15px}.sectionhead h3{margin:0;font-size:19px}.sectionhead p{margin:5px 0 0;color:var(--muted);font-size:13px}.subject-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.subject{padding:0;overflow:hidden;text-align:left;background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:17px}.subject-banner{height:9px;background:var(--accent)}.subject-body{padding:17px}.subject-icon{height:42px;width:42px;border-radius:13px;background:var(--tint);display:grid;place-items:center;font-size:22px;margin-bottom:14px}.subject h4{font-size:16px;margin:0 0 6px}.subject p{font-size:12px;color:var(--muted);margin:0}.subject-foot{display:flex;justify-content:space-between;align-items:center;margin-top:19px;font-size:12px;color:var(--muted)}.pill{background:#f0f2f7;padding:5px 8px;border-radius:7px}.panel{padding:20px}.empty{border:1px dashed #d7dce7;border-radius:15px;padding:28px;text-align:center;color:var(--muted);line-height:1.6}.empty .emoji{font-size:35px;margin-bottom:8px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}.search{flex:1;min-width:180px;border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;outline:none}.search:focus,input:focus,select:focus,textarea:focus{border-color:#98a6ff;box-shadow:0 0 0 3px #eef0ff;outline:none}.resource-list{display:grid;gap:10px}.resource{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff}.fileicon{width:43px;height:43px;display:grid;place-items:center;background:#f0f2ff;border-radius:12px;font-size:21px;flex-shrink:0}.resource-info{flex:1;min-width:0}.resource-info strong{display:block;overflow-wrap:anywhere}.resource-info small{color:var(--muted);display:block;margin-top:4px}.resource-actions{display:flex;gap:7px;flex-wrap:wrap}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:13px;font-weight:700;color:#505b6d}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff;color:var(--ink)}.field textarea{min-height:110px;resize:vertical}.modal-backdrop{position:fixed;inset:0;background:#18213b66;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.modal-backdrop.show{display:flex}.modal{width:min(540px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;padding:24px;box-shadow:0 20px 70px #1113}.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead h3{margin:0}.x{font-size:22px;background:transparent;padding:3px 8px;color:#7b8493}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.page{display:none}.page.active{display:block}.muted{color:var(--muted)}.note-card{padding:16px;border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:10px}.note-card h4{margin:0 0 7px}.note-card p{white-space:pre-wrap;line-height:1.5;color:#566174;margin:0}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;padding:12px 17px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:20}.toast.show{display:block}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{padding:12px 14px;border-right:0;border-bottom:1px solid var(--line);gap:12px}.brand{padding:3px 5px}.nav{display:flex;overflow-x:auto;gap:5px}.nav button{width:auto;white-space:nowrap;margin:0;padding:9px 11px}.navlabel,.sidebar-note{display:none}main{padding:22px 16px}.subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.welcome .bigicon{display:none}}
+@media(max-width:540px){.stats{grid-template-columns:1fr}.subject-grid{grid-template-columns:1fr}.topbar{align-items:flex-start}.resource{align-items:flex-start}.resource-actions{flex-direction:column}.resource-actions button{padding:8px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon">📚</div><div><h1>Mon Espace de Cours</h1><small>Ma bibliothèque personnelle</small></div></div>
+  <div class="navlabel">Espace personnel</div>
+  <nav class="nav">
+    <button class="active" data-page="home"><span class="ico">▦</span> Tableau de bord</button>
+    <button data-page="courses"><span class="ico">📘</span> Mes matières</button>
+    <button data-page="resources"><span class="ico">📂</span> Mes fiches</button>
+    <button data-page="notes"><span class="ico">✍️</span> Mes notes</button>
+  </nav>
+  <div style="padding:0 8px;display:grid;gap:9px"><div class="navlabel" style="padding:0">Personnalisation</div><label style="font-size:12px;color:var(--muted)">Mode <select id="themeMode" class="search" style="width:100%;min-width:0;padding:8px;margin-top:5px" onchange="applyPreferences()"><option value="light">☀️ Clair</option><option value="dark">🌙 Sombre</option></select></label><label style="font-size:12px;color:var(--muted)">Couleur principale <select id="accentColor" class="search" style="width:100%;min-width:0;padding:8px;margin-top:5px" onchange="applyPreferences()"><option value="#4f67e8">Bleu</option><option value="#168b70">Vert</option><option value="#d97706">Orange</option><option value="#9333ea">Violet</option><option value="#db4777">Rose</option><option value="#0284c7">Cyan</option></select></label></div><div class="sidebar-note"><strong>🔒 Tes cours, ton espace</strong>Les fichiers restent dans ce navigateur sur cet appareil. Pense à exporter une sauvegarde de temps en temps.</div>
+</aside>
+<main>
+  <div class="topbar"><div><div class="eyebrow" id="eyebrow">MON ESPACE PERSONNEL</div><h2 id="pageTitle">Bonjour ! 👋</h2></div><div class="avatar">ME</div></div>
+  <section class="page active" id="page-home">
+    <div class="welcome"><div><h3>Bienvenue dans ton espace de cours</h3><p>Range tes fiches, classe tes matières et retrouve tes documents en quelques secondes. Tout est organisé au même endroit.</p></div><div class="bigicon">🎓</div></div>
+    <div class="stats">
+      <div class="stat"><span class="symbol">📘</span><div class="label">Mes matières</div><div class="num" id="statCourses">0</div></div>
+      <div class="stat"><span class="symbol">📄</span><div class="label">Mes fiches</div><div class="num" id="statResources">0</div></div>
+      <div class="stat"><span class="symbol">✍️</span><div class="label">Mes notes</div><div class="num" id="statNotes">0</div></div>
+    </div>
+    <div class="sectionhead"><div><h3>Accès rapide</h3><p>Les matières de ta bibliothèque</p></div><button class="primary" onclick="openCourseModal()">＋ Ajouter une matière</button></div>
+    <div class="subject-grid" id="homeCourses"></div>
+    <div class="sectionhead"><div><h3>Dernières fiches ajoutées</h3><p>Retrouve rapidement tes documents récents</p></div><button class="soft" onclick="showPage('resources')">Voir toutes les fiches →</button></div>
+    <div id="recentResources"></div>
+  </section>
+  <section class="page" id="page-courses">
+    <div class="sectionhead"><div><h3>Mes matières</h3><p>Crée une matière pour chaque cours scolaire.</p></div><button class="primary" onclick="openCourseModal()">＋ Ajouter une matière</button></div><div class="toolbar"><button class="soft" onclick="openShareModal()">↗ Partager un cours avec un code</button><button class="plain" onclick="openImportModal()">＋ Importer avec un code</button></div>
+    <div class="subject-grid" id="allCourses"></div>
+  </section>
+  <section class="page" id="page-resources">
+    <div class="sectionhead"><div><h3>Mes fiches et documents</h3><p>Archive des PDF, images, documents et autres fichiers.</p></div><button class="primary" onclick="openResourceModal()">＋ Ajouter une fiche</button></div>
+    <div class="toolbar"><input class="search" id="resourceSearch" placeholder="🔎 Rechercher une fiche..." oninput="renderResources()"><select id="resourceFilter" onchange="renderResources()" class="search" style="flex:0 1 210px"><option value="">Toutes les matières</option></select></div>
+    <div id="resourceList" class="resource-list"></div>
+  </section>
+  <section class="page" id="page-notes">
+    <div class="sectionhead"><div><h3>Mes notes de cours</h3><p>Écris un résumé, une formule ou une idée à garder.</p></div><button class="primary" onclick="openNoteModal()">＋ Nouvelle note</button></div>
+    <div id="notesList"></div>
+  </section>
+</main>
+</div>
+<div class="modal-backdrop" id="courseModal"><div class="modal"><div class="modalhead"><h3>Ajouter une matière</h3><button class="x" onclick="closeModal('courseModal')">×</button></div>
+<form id="courseForm"><div class="field"><label for="courseName">Nom de la matière</label><input id="courseName" required placeholder="Ex. Mathématiques"></div><div class="field"><label for="courseIcon">Icône</label><select id="courseIcon"><option>📘</option><option>➗</option><option>🧪</option><option>🌍</option><option>📚</option><option>🗣️</option><option>🎨</option><option>💻</option><option>⚡</option><option>🏛️</option></select></div><div class="field"><label for="courseColor">Couleur</label><select id="courseColor"><option value="#6477ed">Bleu</option><option value="#25a887">Vert</option><option value="#e69b43">Orange</option><option value="#bd70d9">Violet</option><option value="#e36b87">Rose</option><option value="#38a6c8">Turquoise</option></select></div><div class="modal-actions"><button type="button" class="plain" onclick="closeModal('courseModal')">Annuler</button><button class="primary">Créer la matière</button></div></form></div></div>
+<div class="modal-backdrop" id="resourceModal"><div class="modal"><div class="modalhead"><h3>Ajouter une fiche</h3><button class="x" onclick="closeModal('resourceModal')">×</button></div>
+<form id="resourceForm"><div class="field"><label for="resourceTitle">Titre de la fiche</label><input id="resourceTitle" required placeholder="Ex. Exercices sur les fractions"></div><div class="field"><label for="resourceSubject">Matière</label><select id="resourceSubject" required></select></div><div class="field"><label for="resourceFile">Fichier (PDF, image, document…)</label><input id="resourceFile" type="file"></div><div class="field"><label for="resourceDescription">Description (facultatif)</label><textarea id="resourceDescription" placeholder="Chapitre, numéro d'exercice, contenu…"></textarea></div><p class="muted" style="font-size:12px">Les fichiers sont enregistrés dans le stockage local de ce navigateur. Pour garder une copie ailleurs, télécharge-les ou exporte tes données.</p><div class="modal-actions"><button type="button" class="plain" onclick="closeModal('resourceModal')">Annuler</button><button class="primary">Enregistrer la fiche</button></div></form></div></div>
+<div class="modal-backdrop" id="noteModal"><div class="modal"><div class="modalhead"><h3>Nouvelle note</h3><button class="x" onclick="closeModal('noteModal')">×</button></div><form id="noteForm"><div class="field"><label for="noteTitle">Titre</label><input id="noteTitle" required placeholder="Ex. Formules à retenir"></div><div class="field"><label for="noteSubject">Matière</label><select id="noteSubject" required></select></div><div class="field"><label for="noteContent">Contenu</label><textarea id="noteContent" required placeholder="Écris tes notes ici…"></textarea></div><div class="modal-actions"><button type="button" class="plain" onclick="closeModal('noteModal')">Annuler</button><button class="primary">Enregistrer la note</button></div></form></div></div>
+
+<div class="modal-backdrop" id="shareModal"><div class="modal"><div class="modalhead"><h3>Partager un cours</h3><button class="x" onclick="closeModal('shareModal')">×</button></div>
+<p class="muted">Choisis une matière : l'application crée un code à copier et à envoyer. L'autre personne pourra l'importer dans son propre espace.</p>
+<div class="field"><label for="shareCourseSelect">Matière à partager</label><select id="shareCourseSelect"></select></div>
+<div class="field"><label for="shareCode">Code de partage</label><textarea id="shareCode" readonly placeholder="Ton code apparaîtra ici…" style="min-height:125px;font-size:12px"></textarea></div>
+<p class="muted" style="font-size:12px">Le code contient les cours, les notes et les fichiers associés. Les codes avec de gros fichiers peuvent être très longs. Partage-le uniquement avec les personnes souhaitées.</p>
+<div class="modal-actions"><button type="button" class="plain" onclick="closeModal('shareModal')">Fermer</button><button type="button" class="soft" onclick="generateShareCode()">Générer le code</button><button type="button" class="primary" onclick="copyShareCode()">Copier le code</button></div></div></div>
+<div class="modal-backdrop" id="importModal"><div class="modal"><div class="modalhead"><h3>Importer un cours</h3><button class="x" onclick="closeModal('importModal')">×</button></div>
+<p class="muted">Colle ici le code reçu pour ajouter la matière et ses documents à ta bibliothèque.</p>
+<div class="field"><label for="importCode">Code de partage</label><textarea id="importCode" placeholder="Colle le code ici…" style="min-height:150px"></textarea></div>
+<div class="modal-actions"><button type="button" class="plain" onclick="closeModal('importModal')">Annuler</button><button type="button" class="primary" onclick="importShareCode()">Importer le cours</button></div></div></div>
+
+<div class="toast" id="toast"></div>
+<script>
+const DB_NAME='mon-espace-cours-db', DB_VERSION=1;
+let db, courses=[], resources=[], notes=[];
+const palettes=[['#6477ed','#eef0ff'],['#25a887','#e4f7ee'],['#e69b43','#fff1df'],['#bd70d9','#f7eaff'],['#e36b87','#ffe9ef'],['#38a6c8','#e2f7fc']];
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=()=>{const d=req.result;d.createObjectStore('courses',{keyPath:'id'});d.createObjectStore('resources',{keyPath:'id'});d.createObjectStore('notes',{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
+function all(store){return new Promise((resolve,reject)=>{const r=db.transaction(store,'readonly').objectStore(store).getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
+function put(store,item){return new Promise((resolve,reject)=>{const tx=db.transaction(store,'readwrite');tx.objectStore(store).put(item);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);});}
+function del(store,id){return new Promise((resolve,reject)=>{const tx=db.transaction(store,'readwrite');tx.objectStore(store).delete(id);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);});}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function dateText(ts){return new Date(ts).toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'})}
+function courseById(id){return courses.find(c=>c.id===id)}
+function countResources(id){return resources.filter(r=>r.courseId===id).length}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+function showPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const names={home:['MON ESPACE PERSONNEL','Bonjour ! 👋'],courses:['ORGANISATION','Mes matières'],resources:['BIBLIOTHÈQUE','Mes fiches'],notes:['MÉMOIRE DE COURS','Mes notes']};document.getElementById('eyebrow').textContent=names[page][0];document.getElementById('pageTitle').textContent=names[page][1];}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function openCourseModal(){document.getElementById('courseForm').reset();document.getElementById('courseModal').classList.add('show')}
+function openResourceModal(){if(!courses.length){toast('Ajoute d’abord une matière.');showPage('courses');return}document.getElementById('resourceForm').reset();fillSubjectSelects();document.getElementById('resourceModal').classList.add('show')}
+function openNoteModal(){if(!courses.length){toast('Ajoute d’abord une matière.');showPage('courses');return}document.getElementById('noteForm').reset();fillSubjectSelects();document.getElementById('noteModal').classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function fillSubjectSelects(){['resourceSubject','noteSubject'].forEach(id=>{const s=document.getElementById(id);s.innerHTML=courses.map(c=>`<option value="${c.id}">${esc(c.icon)} ${esc(c.name)}</option>`).join('')})}
+function courseCard(c){const p=palettes[c.palette%palettes.length];return `<button class="subject" style="--accent:${c.color||p[0]};--tint:${c.tint||p[1]}" onclick="filterCourse('${c.id}')"><div class="subject-banner"></div><div class="subject-body"><div class="subject-icon">${esc(c.icon)}</div><h4>${esc(c.name)}</h4><p>${countResources(c.id)} fiche(s) · ${notes.filter(n=>n.courseId===c.id).length} note(s)</p><div class="subject-foot"><span class="pill">Ouvrir la matière</span><span>→</span></div></div></button>`}
+function filterCourse(id){showPage('resources');document.getElementById('resourceFilter').value=id;renderResources()}
+function renderCourses(){const cards=courses.map(courseCard).join('');document.getElementById('homeCourses').innerHTML=cards||`<div class="empty" style="grid-column:1/-1"><div class="emoji">📚</div><strong>Ta bibliothèque commence ici</strong><br>Ajoute ta première matière pour classer tes cours et tes fiches.</div>`;document.getElementById('allCourses').innerHTML=cards||`<div class="empty" style="grid-column:1/-1"><div class="emoji">📘</div>Aucune matière pour le moment.<br>Crée une matière pour commencer.</div>`;const filter=document.getElementById('resourceFilter'),old=filter.value;filter.innerHTML='<option value="">Toutes les matières</option>'+courses.map(c=>`<option value="${c.id}">${esc(c.icon)} ${esc(c.name)}</option>`).join('');if(courses.some(c=>c.id===old))filter.value=old;fillSubjectSelectsSafe();}
+function fillSubjectSelectsSafe(){['resourceSubject','noteSubject'].forEach(id=>{const s=document.getElementById(id);if(s&&courses.length){const old=s.value;s.innerHTML=courses.map(c=>`<option value="${c.id}">${esc(c.icon)} ${esc(c.name)}</option>`).join('');if(courses.some(c=>c.id===old))s.value=old;}})}
+function fileIcon(r){const n=(r.fileName||'').toLowerCase();if(n.endsWith('.pdf'))return '📕';if(/\.(png|jpe?g|gif|webp|heic)$/.test(n))return '🖼️';if(/\.(docx?|odt)$/.test(n))return '📝';if(/\.(pptx?|odp)$/.test(n))return '📊';return r.fileName?'📎':'📄'}
+function resourceRow(r){const c=courseById(r.courseId);return `<div class="resource"><div class="fileicon">${fileIcon(r)}</div><div class="resource-info"><strong>${esc(r.title)}</strong><small>${esc(c?c.name:'Matière supprimée')} · ${r.fileName?esc(r.fileName)+' · ':''}${dateText(r.createdAt)}</small>${r.description?`<small>${esc(r.description)}</small>`:''}</div><div class="resource-actions">${r.blob?`<button class="soft" onclick="downloadResource('${r.id}')">Ouvrir / Télécharger</button>`:''}<button class="plain" onclick="deleteResource('${r.id}')">Supprimer</button></div></div>`}
+function renderResources(){const q=(document.getElementById('resourceSearch')?.value||'').toLowerCase(),f=document.getElementById('resourceFilter')?.value||'';const list=resources.filter(r=>(!f||r.courseId===f)&&(!q||[r.title,r.fileName,r.description,courseById(r.courseId)?.name].join(' ').toLowerCase().includes(q))).sort((a,b)=>b.createdAt-a.createdAt);document.getElementById('resourceList').innerHTML=list.map(resourceRow).join('')||`<div class="empty"><div class="emoji">📂</div><strong>Aucune fiche trouvée</strong><br>Ajoute une fiche ou modifie ta recherche.</div>`;const recent=[...resources].sort((a,b)=>b.createdAt-a.createdAt).slice(0,3);document.getElementById('recentResources').innerHTML=recent.map(resourceRow).join('')||`<div class="empty"><div class="emoji">📄</div>Les fiches que tu ajoutes apparaîtront ici.</div>`}
+function renderNotes(){const list=[...notes].sort((a,b)=>b.updatedAt-a.updatedAt);document.getElementById('notesList').innerHTML=list.map(n=>`<div class="note-card"><div style="display:flex;justify-content:space-between;gap:12px"><div><h4>${esc(n.title)}</h4><small class="muted">${esc(courseById(n.courseId)?.name||'Matière supprimée')} · ${dateText(n.updatedAt)}</small></div><button class="danger" onclick="deleteNote('${n.id}')">Supprimer</button></div><p style="margin-top:12px">${esc(n.content)}</p></div>`).join('')||`<div class="empty"><div class="emoji">✍️</div>Aucune note pour le moment.<br>Ajoute un résumé ou des formules à retenir.</div>`}
+function renderStats(){document.getElementById('statCourses').textContent=courses.length;document.getElementById('statResources').textContent=resources.length;document.getElementById('statNotes').textContent=notes.length}
+async function refresh(){[courses,resources,notes]=await Promise.all([all('courses'),all('resources'),all('notes')]);renderCourses();renderResources();renderNotes();renderStats()}
+document.getElementById('courseForm').addEventListener('submit',async e=>{e.preventDefault();const idx=courses.length%palettes.length,p=palettes[idx];await put('courses',{id:uid(),name:document.getElementById('courseName').value.trim(),icon:document.getElementById('courseIcon').value,color:document.getElementById('courseColor').value,tint:p[1],palette:idx,createdAt:Date.now()});closeModal('courseModal');await refresh();toast('Matière ajoutée !')});
+document.getElementById('resourceForm').addEventListener('submit',async e=>{e.preventDefault();const f=document.getElementById('resourceFile').files[0];const item={id:uid(),title:document.getElementById('resourceTitle').value.trim(),courseId:document.getElementById('resourceSubject').value,description:document.getElementById('resourceDescription').value.trim(),fileName:f?.name||'',fileType:f?.type||'',blob:f||null,createdAt:Date.now()};try{await put('resources',item);closeModal('resourceModal');await refresh();toast('Fiche enregistrée !')}catch(err){toast('Le fichier est peut-être trop volumineux. Essaie avec un fichier plus petit.')}});
+document.getElementById('noteForm').addEventListener('submit',async e=>{e.preventDefault();await put('notes',{id:uid(),title:document.getElementById('noteTitle').value.trim(),courseId:document.getElementById('noteSubject').value,content:document.getElementById('noteContent').value.trim(),updatedAt:Date.now()});closeModal('noteModal');await refresh();toast('Note enregistrée !')});
+async function downloadResource(id){const r=resources.find(x=>x.id===id);if(!r?.blob)return;const url=URL.createObjectURL(r.blob),a=document.createElement('a');a.href=url;a.download=r.fileName||r.title;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+async function deleteResource(id){if(!confirm('Supprimer cette fiche et son fichier ?'))return;await del('resources',id);await refresh();toast('Fiche supprimée.')}
+async function deleteNote(id){if(!confirm('Supprimer cette note ?'))return;await del('notes',id);await refresh();toast('Note supprimée.')}
+document.querySelectorAll('.modal-backdrop').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')}));
+
+function applyPreferences(){
+ const mode=document.getElementById('themeMode')?.value||'light';
+ const accent=document.getElementById('accentColor')?.value||'#4f67e8';
+ document.body.classList.toggle('dark',mode==='dark');
+ document.documentElement.style.setProperty('--blue',accent);
+ const tintMap={'#4f67e8':'#eef1ff','#168b70':'#e3f7f0','#d97706':'#fff1df','#9333ea':'#f3e8ff','#db4777':'#ffe8f0','#0284c7':'#e0f2fe'};
+ document.documentElement.style.setProperty('--blue2',tintMap[accent]||(mode==='dark'?'#303a62':'#eef1ff'));
+ try{localStorage.setItem('mec-prefs',JSON.stringify({mode,accent}))}catch(e){}
+}
+function loadPreferences(){
+ try{const p=JSON.parse(localStorage.getItem('mec-prefs')||'{}');if(p.mode)document.getElementById('themeMode').value=p.mode;if(p.accent)document.getElementById('accentColor').value=p.accent;}catch(e){}
+ applyPreferences();
+}
+function openShareModal(){
+ if(!courses.length){toast('Ajoute d’abord une matière à partager.');return}
+ const s=document.getElementById('shareCourseSelect');
+ s.innerHTML=courses.map(c=>`<option value="${c.id}">${esc(c.icon)} ${esc(c.name)}</option>`).join('');
+ document.getElementById('shareCode').value='';
+ document.getElementById('shareModal').classList.add('show');
+}
+function openImportModal(){document.getElementById('importCode').value='';document.getElementById('importModal').classList.add('show')}
+function bytesToBase64(bytes){let binary='';const chunk=0x8000;for(let i=0;i<bytes.length;i+=chunk)binary+=String.fromCharCode(...bytes.subarray(i,i+chunk));return btoa(binary)}
+function base64ToBytes(str){const binary=atob(str);const bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);return bytes}
+async function generateShareCode(){
+ const id=document.getElementById('shareCourseSelect').value,c=courses.find(x=>x.id===id);
+ if(!c){toast('Choisis une matière.');return}
+ const rs=resources.filter(r=>r.courseId===id), ns=notes.filter(n=>n.courseId===id);
+ const packed=[];
+ for(const r of rs){
+   let data=null;
+   if(r.blob){const buf=await r.blob.arrayBuffer();data=bytesToBase64(new Uint8Array(buf))}
+   packed.push({title:r.title,description:r.description||'',fileName:r.fileName||'',fileType:r.fileType||'',data,createdAt:r.createdAt});
+ }
+ const payload={app:'Mon Espace de Cours',version:1,course:{name:c.name,icon:c.icon,color:c.color||'#6477ed',tint:c.tint||'#eef0ff'},resources:packed,notes:ns.map(n=>({title:n.title,content:n.content,updatedAt:n.updatedAt}))};
+ const code='MEC1-'+bytesToBase64(new TextEncoder().encode(JSON.stringify(payload)));
+ document.getElementById('shareCode').value=code;
+ toast('Code de partage créé.');
+}
+async function copyShareCode(){
+ const code=document.getElementById('shareCode').value;
+ if(!code){await generateShareCode();return}
+ try{await navigator.clipboard.writeText(code);toast('Code copié ! Envoie-le à la personne.')}catch(e){const t=document.getElementById('shareCode');t.focus();t.select();toast('Sélectionne le code puis copie-le.')}
+}
+async function importShareCode(){
+ try{
+  const raw=document.getElementById('importCode').value.trim();
+  if(!raw.startsWith('MEC1-'))throw new Error('Ce code ne semble pas valide.');
+  const decoded=new TextDecoder().decode(base64ToBytes(raw.slice(5)));
+  const payload=JSON.parse(decoded);
+  if(payload.app!=='Mon Espace de Cours'||payload.version!==1||!payload.course?.name)throw new Error('Le code est incomplet ou incompatible.');
+  const courseId=uid();
+  const color=payload.course.color||'#6477ed';
+  const palette=Math.max(0,palettes.findIndex(p=>p[0]===color));
+  await put('courses',{id:courseId,name:payload.course.name+' (importé)',icon:payload.course.icon||'📘',color,tint:payload.course.tint||'#eef0ff',palette,createdAt:Date.now()});
+  for(const r of (payload.resources||[])){
+    let blob=null;
+    if(r.data){const bytes=base64ToBytes(r.data);blob=new Blob([bytes],{type:r.fileType||'application/octet-stream'});}
+    await put('resources',{id:uid(),title:r.title||r.fileName||'Fiche importée',courseId,description:r.description||'',fileName:r.fileName||'',fileType:r.fileType||'',blob,createdAt:r.createdAt||Date.now()});
+  }
+  for(const n of (payload.notes||[]))await put('notes',{id:uid(),title:n.title||'Note importée',courseId,content:n.content||'',updatedAt:n.updatedAt||Date.now()});
+  closeModal('importModal');await refresh();showPage('courses');toast('Cours importé avec succès !');
+ }catch(e){alert('Impossible d’importer ce code : '+(e.message||'code invalide ou trop volumineux.'))}
+}
+
+loadPreferences();
+(async()=>{try{db=await openDB();await refresh()}catch(e){document.querySelector('main').insertAdjacentHTML('afterbegin','<div class="panel">Ton navigateur ne permet pas le stockage local nécessaire. Essaie avec une version récente de Chrome, Edge ou Firefox.</div>')}})();
+</script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}</script>
+</body>
+</html>
